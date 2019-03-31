@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+##
+## EPITECH PROJECT, 2019
+## 108trigo
+## File description:
+## Math
+##
+
+import sys
+import math
+
+def check_for_err():
+    halp = open("help", "r")
+
+    if len(sys.argv) > 1 and sys.argv[1] == "-h":
+        print(halp.read())
+        sys.exit(0)
+    if len(sys.argv) <= 2 or sys.argv[1] not in ["EXP", "COS", "SIN", "COSH", "SINH"]:
+        print("Bad format, see -h for more info",
+              file=sys.stderr)
+        sys.exit(84)
+    try:
+        for i in range(2, len(sys.argv)):
+            sys.argv[i] = float(sys.argv[i])
+    except ValueError:
+        print("Invalid argument try -h")
+        sys.exit(84)
+    sqi = math.trunc(math.sqrt(i))
+    i = (len(sys.argv) - 2)
+    if math.trunc(math.sqrt(i)) ** 2 != i:
+        print("Not enough parameters to create a matrix")
+        sys.exit(84)
+    return sqi
+
+def display(tab):
+    for i in range(len(tab)):
+        for j in range(len(tab[i])):
+            print("{:.2f}".format(tab[i][j]), end="")
+            if j!= len(tab[i]) - 1:
+                print('\t', end="")
+            else:
+                print('\n', end="" )
+
+def start_calc(tab):
+    return (tab)
+
+def main():
+    sqi = check_for_err()
+    tab = []
+    for i in range(int(sqi)):
+        tab.append([])
+        for j in range(int(sqi)):
+            tab[i].append(sys.argv[i * int(sqi) + j + 2])
+    tab = start_calc(tab)
+    display(tab)
+
+if __name__ == "__main__":
+    main()
